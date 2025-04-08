@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Preview Example</title>
+  <style>
+    #image {
+      height: 300px;
+      width: 600px;
+      background-color: #eee;
+      border: 2px solid #ccc;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      font-size: 18px;
+    }
+    .preview {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="image">Hover over an image below to display here.</div>
+
+  <div>
+    <img class="preview" src="images/img1.jpg" alt="First image description" onmouseover="upDate(this)" onmouseout="undo()">
+    <img class="preview" src="images/img2.jpg" alt="Second image description" onmouseover="upDate(this)" onmouseout="undo()">
+    <img class="preview" src="images/img3.jpg" alt="Third image description" onmouseover="upDate(this)" onmouseout="undo()">
+  </div>
+
+  <script>
+    function upDate(previewPic) {
+      console.log("Hover event triggered");
+      console.log("Image source: ", previewPic.src);
+      console.log("Image alt: ", previewPic.alt);
+
+      const imageDiv = document.getElementById("image");
+      imageDiv.style.backgroundImage = `url('${previewPic.src}')`;
+      imageDiv.textContent = previewPic.alt;
+    }
+
+    function undo() {
+      console.log("Mouse out event triggered");
+      const imageDiv = document.getElementById("image");
+      imageDiv.style.backgroundImage = "url('')";
+      imageDiv.textContent = "Hover over an image below to display here.";
+    }
+  </script>
+</body>
+</html>
